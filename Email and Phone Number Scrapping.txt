@@ -1,0 +1,89 @@
+from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
+         # By importing BeautifulSoup Soup we can parse and scrap the HTML and XML document
+import requests
+         # By Importing requests we can request to API and we can get the raw HTML contents from website i.e to scraping
+import os
+         # This library helps to intrect directly from Operating System
+import nltk
+         # By this we can import Natural Language toolkit
+from nltk import corpus
+         # By this we can import coprora reader which helps to handle specific corpus format 
+import re
+        # By this we can import Regular Expression which will help to find  some specific things from scrap
+
+from urllib.request import urlopen,urlparse, Request,HTTPError
+import warnings
+import pandas as pd
+
+url='https://www.smartjoules.co.in/'
+
+website=pd.DataFrame([url],columns=['Website'])
+
+requests.get(url).text
+
+
+f = urlopen(url)
+reg = "((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}"
+s = f.read().decode('UTF-8') 
+phone = re. findall(reg, s) 
+
+ph=[]
+for phone in phone:    
+    g  = list(filter(None, phone))    
+    g=''.join(g)    
+    ph.append(g) 
+
+final_list = [] 
+def Remove(duplicate):     
+    for num in duplicate:     
+        if num not in final_list:     
+            final_list.append(num)     
+            return final_list 
+            k = Remove(ph)
+            
+
+
+
+#print(ph)
+
+mail=re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,3}",s)  #Email regex
+
+
+
+type(web)
+
+ph
+
+phone=pd.DataFrame(ph,columns=['Phone_number'])
+
+phone
+
+#j='  '.join(ph)
+
+mail
+
+mail=pd.DataFrame(mail,columns=['Email'])
+
+mail
+
+dataframe=pd.concat([website,phone,mail],axis=True)
+
+dataframe
+
+import csv
+import pandas as pd
+
+dataframe.to_csv(r'B:\dataframe.csv')
+
+
+
+
+
+
+
+
+
+
+
